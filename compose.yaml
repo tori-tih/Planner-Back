@@ -1,0 +1,23 @@
+services:
+  discovery:
+    image: 'ghcr.io/geiier/e-journal-discovery:master'
+    ports:
+      - '8761:8761'
+  auth:
+    container_name: 'auth'
+    image: 'ghcr.io/geiier/e-journal-auth:master'
+    ports:
+      - '8081:8081'
+    environment:
+      - 'POSTGRES_URL=jdbc:postgresql://postgres:5432/calendar'
+      - 'POSTGRES_PASSWORD=1111'
+      - 'POSTGRES_USER=tori'
+      - 'EUREKA_URI=http://discovery:8761/eureka'
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=calendar'
+      - 'POSTGRES_PASSWORD=1111'
+      - 'POSTGRES_USER=tori'
+    ports:
+      - '5454:5432'

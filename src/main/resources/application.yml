@@ -1,0 +1,23 @@
+server:
+  port: 8046
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5454/calendar
+    password: 1111
+    username: tori
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+        jdbc:
+          time_zone: Europe/Samara
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+  application:
+    name: planner-back
+

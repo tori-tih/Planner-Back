@@ -8,13 +8,14 @@ services:
     image: 'ghcr.io/geiier/e-journal-discovery:master'
     ports:
       - '8761:8761'
-  plannerNodeJs:
+  nodejs:
     image: 'ghcr.io/tori-tih/planner-nodejs:master'
     ports:
       - '3001:3001'
     environment:
       - 'EUREKA_HOST=discovery'
       - 'EUREKA_PORT=8761'
+      - 'HOST_NAME=nodejs'
   auth:
     container_name: 'auth'
     image: 'ghcr.io/geiier/e-journal-auth:master'

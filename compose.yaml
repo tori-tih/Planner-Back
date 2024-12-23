@@ -1,8 +1,20 @@
 services:
+  planner-front:
+    image: 'ghcr.io/tori-tih/planner-front:master'
+    ports:
+      - '80:80'
+      - '443:443'
   discovery:
     image: 'ghcr.io/geiier/e-journal-discovery:master'
     ports:
       - '8761:8761'
+  plannerNodeJs:
+    image: 'ghcr.io/tori-tih/planner-nodejs:master'
+    ports:
+      - '3001:3001'
+    environment:
+      - 'EUREKA_HOST=discovery'
+      - 'EUREKA_PORT=8761'
   auth:
     container_name: 'auth'
     image: 'ghcr.io/geiier/e-journal-auth:master'
@@ -16,7 +28,14 @@ services:
       - 'EUREKA_URI=http://discovery:8761/eureka'
   planner:
     container_name: 'planner'
-
+    image: 'ghcr.io/tori-tih/planner-back:master'
+    ports:
+      - '8046:8046'
+    environment:
+      - 'POSTGRES_URL=jdbc:postgresql://postgres:5432/calendar'
+      - 'POSTGRES_PASSWORD=1111'
+      - 'POSTGRES_USER=tori'
+      - 'EUREKA_URI=http://discovery:8761/eureka'
   postgres:
     image: 'postgres:latest'
     environment:

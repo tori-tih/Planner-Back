@@ -17,7 +17,7 @@ public class CalendarMapper extends BaseMapper<Calendar, CalendarDto> {
         BeanUtils.copyProperties(entity, dto);
 
         if (entity.getCalendarEvents() != null) {
-            dto.setEvents(entity.getCalendarEvents()
+            dto.setListEvent(entity.getCalendarEvents()
                     .stream()
                     .map(calendarMapper::fromEntity)
                     .toList()
@@ -31,8 +31,8 @@ public class CalendarMapper extends BaseMapper<Calendar, CalendarDto> {
     public Calendar toEntity(CalendarDto calendarDto) {
         final Calendar calendar = new Calendar();
         BeanUtils.copyProperties(calendarDto, calendar);
-        if (calendarDto.getEvents() != null) {
-            calendar.setCalendarEvents(calendarDto.getEvents()
+        if (calendarDto.getListEvent() != null) {
+            calendar.setCalendarEvents(calendarDto.getListEvent()
                     .stream()
                     .map(calendarMapper::toEntity)
                     .toList()

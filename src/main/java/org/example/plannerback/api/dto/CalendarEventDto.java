@@ -11,8 +11,8 @@ import java.util.UUID;
  */
 @Data
 public class CalendarEventDto implements Serializable {
-    UUID id;
-    LocalDateTime startDate;
-    LocalDateTime endDate;
-    String text;
+    private UUID id;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private String text;
 }

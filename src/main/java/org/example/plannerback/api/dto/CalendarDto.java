@@ -14,5 +14,5 @@ public class CalendarDto implements Serializable {
     String title;
     String description;
     Long userId;
-    List<CalendarEventDto> events;
+    List<CalendarEventDto> listEvent;
 }

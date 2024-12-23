@@ -3,9 +3,7 @@ package org.example.plannerback.api.controllers;
 import lombok.RequiredArgsConstructor;
 import org.example.plannerback.api.dto.CalendarDto;
 import org.example.plannerback.api.services.CalendarService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,20 @@ public class CalendarController {
     @GetMapping()
     public List<CalendarDto> getCalendars() {
         return calendarService.getAllCalendars();
+    }
+
+    @PostMapping
+    public CalendarDto createCalendar(@RequestBody CalendarDto calendarDto) {
+        return calendarService.create(calendarDto);
+    }
+
+    @PutMapping
+    public CalendarDto updateCalendar(@RequestBody CalendarDto calendarDto) {
+        return calendarService.update(calendarDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCalendar(@PathVariable Long id) {
+        calendarService.delete(id);
     }
 }

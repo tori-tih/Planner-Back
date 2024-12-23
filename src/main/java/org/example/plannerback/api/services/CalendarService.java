@@ -39,7 +39,7 @@ public class CalendarService {
                 () -> new EntityNotFoundException("Календарь не найден")
         );
         if (!Objects.equals(SecurityContextHelper.getCurrentUser().getId(),calendar.getUserId())) {
-            throw new EntityNotFoundException("Юзер идет нахуй");
+            throw new EntityNotFoundException("Неверный айди пользователя");
         }
         calendar.setTitle(calendarDto.getTitle());
         calendar.setDescription(calendarDto.getDescription());

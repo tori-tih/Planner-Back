@@ -9,10 +9,14 @@ services:
     ports:
       - '8081:8081'
     environment:
+      - 'APP_NAME=planner-auth'
       - 'POSTGRES_URL=jdbc:postgresql://postgres:5432/calendar'
       - 'POSTGRES_PASSWORD=1111'
       - 'POSTGRES_USER=tori'
       - 'EUREKA_URI=http://discovery:8761/eureka'
+  planner:
+    container_name: 'planner'
+
   postgres:
     image: 'postgres:latest'
     environment:

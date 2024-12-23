@@ -38,8 +38,8 @@ public class CalendarService {
         Calendar calendar = calendarRepository.findById(calendarDto.getId()).orElseThrow(
                 () -> new EntityNotFoundException("Календарь не найден")
         );
-        if (!Objects.equals(calendarDto.getUserId(),calendar.getId())) {
-            throw new EntityNotFoundException("Календар не найден");
+        if (!Objects.equals(SecurityContextHelper.getCurrentUser().getId(),calendar.getUserId())) {
+            throw new EntityNotFoundException("Юзер идет нахуй");
         }
         calendar.setTitle(calendarDto.getTitle());
         calendar.setDescription(calendarDto.getDescription());

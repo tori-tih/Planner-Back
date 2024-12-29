@@ -1,6 +1,11 @@
 server:
   port: 8046
 spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     url: '${POSTGRES_URL}'
     password: '${POSTGRES_PASSWORD}'
